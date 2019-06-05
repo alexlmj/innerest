@@ -1,0 +1,33 @@
+#wrapperLoadingPage {width: 100%;height: auto;}
+
+.content-loading-page {width: 100%;margin: 0 auto;text-align: center;}
+
+.top-title-notify-result { width: 100%; height:
+80px; background-color: #a7d9d5; margin-bottom: 20px;}
+.text-notify-result { font-weight: 900; font-size: 26px; line-height: 80px;}
+
+.wrap-result-page {background-color: #f6f7f7; height: 600px; width: 100%;}
+.wrap-gauge-bar {width: 90%;margin: 0 auto;padding-top: 50px;}
+.wrap-gauge-bar img { width: 100%;}
+
+.result-emotion-icon { margin-top: 60px;}
+.notify-result-ment { font-weight: 800; font-size: 17px; margin-top: 50px; margin-bottom: 40px;}
+
+.join-membership-btn { display: block; width: 290px; height: 60px; background: #2ba59b; color: #fff; font-size: 18px; font-weight: 500; line-height: 60px;text-align: center;margin: 0 auto;}
+
+
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#myBar2 {
+  width: 10%;
+  height: 30px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+
+

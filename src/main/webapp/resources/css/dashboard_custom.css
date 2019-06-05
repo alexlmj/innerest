@@ -1,0 +1,252 @@
+
+/* 2019.05.06 CR추가  */
+
+.align-line { float: left; }
+.align-line:after { content: ""; display: block; clear: both;}
+.img-product { margin-right: 10px;}
+.order-option { font-size: 12px; color: #777;}
+.order-name { margin-top: 5px !important;}
+td { vertical-align: middle !important;}
+.img-product { width: 60px; height: 60px;}
+
+/* 2019.05.09 MJ추가 */
+
+#custom-button {
+  padding: 4px;
+  color: white;
+  background-color: #009578;
+  border: 1px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#custom-button:hover {
+  background-color: #00b28f;
+}
+
+#custom-text {
+  margin-left: 10px; 
+  color: #aaa;
+}
+
+
+/* 2019.05.07 MJ추가  table_customer */
+
+.customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.customers td, .customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.customers tr:nth-child(even){background-color: #f2f2f2;}
+
+.customers tr:hover {background-color: #ddd;}
+
+.customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #1ac1bf;
+  color: white;
+}
+
+.write_button{
+	padding: 14px;
+}
+
+
+a#logo {
+    text-align: left;
+    color: #1ac1bf;
+}
+
+a#logo:hover {
+    color: #1ac1bf;
+    text-decoration: none;
+}
+
+a#logo h2 {
+    /* float: right!important; */
+    /*width: 80%;*/
+    margin-bottom: 0px;
+}
+
+/*main contents*/
+.mypage-headline{
+    padding: 25px 10px;
+    border-bottom-style: solid;
+    border-width: 2px;
+    border-color: #1ac1bf;
+}
+
+/*table*/
+.main-box{
+	margin-top: 30px;
+}
+.table-overflow {
+    overflow: auto;
+}
+.table-width{
+  width: 1032px!important;
+}
+.d-sm-inline-block{display:inline-block!important}
+
+/*주문내역조회*/
+.order-img {
+    width: 20%;
+
+    float: left;
+}
+.order-info{
+	width: 80%;
+	padding-left: 20px;
+	float:left;
+}
+
+.order-img img {
+    width: 100%;
+    height: auto;
+}
+
+p.order-option {
+    font-size: 13px;
+    }
+
+p.order-price{
+  float:left;
+}
+a.btn.btn-review:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+
+/*수출진단확인*/
+
+td.p-c1 {
+    background-color: #1ac1bf90;
+    width: 20%;
+}
+td.p-c2 {
+    background-color: #f1f1f1;
+    padding: 20px 50px 20px 10px;
+	width: 80%;
+}
+
+td.p-c3 {
+    background-color: #f1f1f1;  
+	width: 100%; 
+}
+
+td.p-c4 {
+    background-color: #f1f1f1;  
+	width: 100%;
+	height: 300px;
+}
+
+ 
+
+/*----------------------------------------기업회원-----------------------------------------*/
+/*상품관리 */ 
+span.btn-edit {
+   border-color: #e83e8c; 
+   background-color: #e83e8c; 
+   color: aliceblue;
+}
+
+
+/*상품등록*/
+   
+td.reg_product1 {
+    background-color: #1ac1bf;
+    width: 20%;
+}
+td.reg_product2 {
+    background-color: #f1f1f1;
+    padding: 20px 50px 20px 10px;
+}
+ 
+/*상품입금완료*/
+
+.transfer-done{
+   display: none;
+}
+
+
+
+/*----------------------------------------관리자-----------------------------------------*/
+/*회원관리*/
+.filter-header {
+    margin: 15px 0px;
+}
+
+tr.member-info td {
+    font-size: 13px;
+}
+
+.save-btn-wrapper {
+    margin-top: 1.5rem;
+}
+a.save-btn.btn.btn-sm.btn-primary {
+    padding: 0.25rem 4rem;
+}
+.modal-wrapper {
+    margin: 0 auto;
+    width: 68%;
+}
+
+input.member-info-input {
+    width: 83%;
+}
+
+.modal-row {
+    margin-bottom: 20px;
+}
+.expo-doc th{
+    font-size: 10px;
+}
+
+/*진단관리*/
+input.expo-input {
+    width: 90%;
+}
+.main-wrapper {
+    overflow: auto;
+}
+.table-scroll {
+    width: 1030px;
+}
+
+/*2019.05.19*/
+.save-btn-wrapper2 {
+    margin-bottom: 1.5em;
+}
+.member-date p {
+    margin: 0;
+}
+select#sel1 {
+    margin-left: 20px;
+    width: 44%;
+}
+
+/*입금관리*/
+span.order-state-btn {
+    margin-bottom: 5px;
+}
+
+@media (min-width: 768px) {
+.table.export-table {
+    width: 100%!important;
+}
+ }
+
+@media (max-width: 992px) {
+.modal-font{
+    font-size:14px;
+ }
+}

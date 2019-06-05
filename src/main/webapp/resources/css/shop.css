@@ -1,0 +1,213 @@
+.product-option{
+	padding: 10px 0;
+}
+
+/*수량 버튼*/
+.add-btn{
+	float: right;
+}
+
+/*option*/
+#option_x{
+    display: hidden;
+}
+ul.selec-product {
+    padding: 0px;
+}
+.selec-each {
+    float: left;
+    width: 28%;
+}
+
+p#each-price {
+    float: left;
+    width: 37%;
+}
+button.js-btn-minus {
+    height: 30px;
+    padding: 0rem 0.75rem!important;
+}
+
+button.js-btn-plus {
+    height: 30px;
+    padding: 0rem 0.75rem!important;
+}
+.form-control {
+    height: 30px!important;
+}
+.selec-count {
+    float: left;
+    padding-right: 12px;
+}
+.selec-wrapper {
+    overflow: hidden;
+}
+button.remove {
+    background-color: transparent;
+    border: none;
+}
+button.remove:focus {
+    outline: none;
+}
+i.fas.fa-times{
+    color:#464646;
+}
+i.fas.fa-times:hover {
+    color: #000;
+}
+
+
+.price-info {
+    width: 100%;
+    overflow: auto;
+    padding: 10px 0px;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: darkgrey;
+    margin-bottom: 1rem;
+}
+.price-sec1 {
+    float: left;
+    width: 50%;
+}
+.price-sec2 {
+    float: left;
+    width: 50%;
+    text-align: right;
+}
+
+.price-info p {
+    margin-top: 1rem!important;
+}
+
+
+.cart-buy-btn{
+	width:85%;
+	overflow: auto;
+	margin: 0 auto;
+}
+.cart, .buy{
+	float: left;
+	width: 50%;
+}
+
+.buy a.buy-now.btn.btn-sm.btn-primary {
+    background-color: #ea4141;
+    border-color: #e55;
+}
+/*상세정보*/
+.img-responsive{
+	width: 100%!important;
+	max-width: 1000px!important;
+	height: 100%!important;
+}
+
+/*후기*/
+.review-wrapper {
+    width: 90%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 18px;
+    font-size: 13px;
+}
+
+.review {
+    border: #d6d6d6;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    border-top-style: solid;
+    border-top-width: thin;
+    padding: 20px 0px;
+}
+
+p#name, p#date {
+    margin: 0px;
+}
+
+p#name {
+    width: 15%;
+    float: left;
+}
+p#date {
+    margin-bottom: 7px;
+}
+p#product {
+    color: #1ca1bf;
+}
+
+.review-paging {
+    margin-top: 20px;
+}
+
+.star-rating .fa-star{color: orange;}
+
+/*상위 고정 상품정보창*/
+#subinfo {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 50%;
+    height: 85px;
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid #63636385;
+    border-bottom: 3px solid #1ac1bf;
+    box-shadow: -1px 5px 8px #4444442e;
+    background-color: #fff;
+    display:none;
+
+}
+.fixWrapper{
+    margin: 10px;
+}
+#fixbuynow {
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 7px;
+}
+.fixWrapper p{
+    margin: 0;
+}
+/*#subinfo {
+    position: fixed;
+    top: 30%;
+    right: 20px;
+    width: 200px;
+    height: 200px;
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid #63636385;
+    border-bottom: 3px solid #1ac1bf;
+    box-shadow: -1px 5px 8px #4444442e;
+    background-color: #fff;
+    display: none;
+}*/
+/*장바구니*/
+#cart-table th {
+    font-size: 15px;
+}
+
+p.option-css {
+    font-size: 13px;
+    color: #505050;
+}
+
+/*결제창*/
+#billing .form-control {
+    height: 43px!important;
+}
+
+#zip {
+    padding-left: 0px;
+}
+
+
+/*mobile size*/
+@media screen and (max-width: 767px){
+    #subinfo {
+        width: 100%;
+    }
+}

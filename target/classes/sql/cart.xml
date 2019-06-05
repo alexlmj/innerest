@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cart">
+<insert id="insertCart">
+INSERT INTO basket
+VALUES(#{user_num}, #{pd_num}, now(), #{quantity})
+</insert>
+
+<select id="selectCart" resultType="com.innerest.shop.CartVO">
+SELECT *
+FROM basket
+WHERE user_num=#{user_num} and pd_num = #{pd_num}
+</select>
+<update id="updateCartQuantity">
+UPDATE basket
+SET quantity = quantity + #{quantity}
+WHERE user_num = #{user_num} and pd_num = #{pd_num}
+</update>
+
+<delete id="deleteCart">
+DELETE FROM basket
+where user_num = #{user_num}
+</delete>
+
+<select id="selectCartList" resultType="com.innerest.shop.CartVO">
+SELECT b.user_num, b.pd_num, b.regdate, b.quantity, p.name, pd.pd_name, pd.pd_price, p.file_num1
+FROM basket b join product_detail pd on b.pd_num = pd.pd_num join product p on pd.product_num = p.num
+WHERE b.user_num=#{user_num}
+</select>
+
+<select id="selectCartCount" resultType="int">
+SELECT count(*)
+FROM basket
+WHERE user_num = #{user_num}
+</select>
+</mapper>

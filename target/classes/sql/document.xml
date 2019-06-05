@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="document">
+<!-- Document -->
+<insert id="insertDocument">
+INSERT INTO document (user_num, name, start_point, country, transport, end_point, weight, hs_code, type, category, product, product_detail, state, regdate)
+VALUES (#{user_num}, #{name}, #{start_point}, #{country}, #{transport}, #{end_point}, #{weight}, #{hs_code}, #{type}, #{category}, #{product}, #{product_detail}, 'ING', now())
+</insert>
+
+<!-- Mypage/User -->
+<select id="selectDocument" resultType="com.innerest.document.DocumentVO">
+SELECT *
+FROM document
+WHERE num = #{num}
+</select>
+
+<select id="selectDocumentList" parameterType="map" resultType="com.innerest.document.DocumentVO">
+SELECT *
+FROM document
+<where>
+<if test="user_num != null and user_num != ''">
+user_num = #{user_num}
+</if>
+<if test="search.searchType == 'name'.toString()">
+and name like CONCAT('%',#{search.searchWord},'%')
+</if>
+</where>
+ORDER BY num desc
+LIMIT #{search.startRowNumForDB}, #{search.pageSize}
+</select>
+
+<select id="selectCountForDocument" parameterType="map" resultType="int">
+SELECT count(num)
+FROM document
+<where>
+<if test="user_num != null and user_num != ''">
+user_num = #{user_num}
+</if>
+<if test="search.searchType == 'name'.toString()">
+and name like CONCAT('%',#{search.searchWord},'%')
+</if>
+</where>
+</select>
+
+
+<!-- admin -->
+
+<delete id="deleteDocument">
+DELETE FROM document
+WHERE num = #{num}
+</delete>
+
+<select id="selectDocumentListAll" parameterType="map" resultType="com.innerest.admin.AdminDocumentVO">
+SELECT d.num, c.store_name, d.name, d.start_point, d.country, d.transport, d.end_point, d.weight, d.hs_code, d.regdate, d.document, d.price
+FROM document d join corporation c on d.user_num = c.user_num
+<where>
+<if test="searchType == 'name'.toString()">
+and d.name like CONCAT('%',#{searchWord},'%')
+</if>
+</where>
+ORDER BY d.num desc
+LIMIT #{startRowNumForDB}, #{pageSize}
+</select>
+
+
+<select id="selectDocumentCountAll" parameterType="map" resultType="int">
+SELECT count(num)
+FROM document
+<where>
+<if test="searchType == 'name'.toString()">
+and name like CONCAT('%',#{searchWord},'%')
+</if>
+</where>
+</select>
+
+<update id="insertExDocAndPrice">
+UPDATE document
+SET document = #{document}, price = #{price}
+WHERE num = #{num}
+</update>
+
+</mapper>
+
+
+
+
+

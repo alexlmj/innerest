@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user" >
+
+<insert id="insertUser" parameterType="com.innerest.common.user.UserVO" >
+INSERT INTO user (id, pw, name, zip, addr, addr_detail, phone, email, email_flag)
+VALUES (#{id}, #{pw}, #{name}, #{zip}, #{addr}, #{addr_detail}, #{phone}, #{email}, #{email_flag})
+</insert>
+
+<select id="selectUser" parameterType="int" resultType="com.innerest.common.user.UserVO">
+SELECT *
+FROM user
+WHERE num = #{num}
+</select>
+
+<select id="selectUserById" parameterType="string" resultType="com.innerest.common.user.UserVO">
+SELECT *
+FROM user
+WHERE id = #{id}
+</select>
+
+<select id="selectUserByEmail" parameterType="string" resultType="com.innerest.common.user.UserVO">
+SELECT *
+FROM user
+WHERE email = #{email}
+</select>
+
+<update id="updateUserInfo" parameterType="com.innerest.common.user.UserVO">
+UPDATE user
+SET zip = #{zip}, addr = #{addr}, addr_detail = #{addr_detail}, name = #{name}, phone = #{phone}
+WHERE num = #{num}
+</update>
+
+<update id="updateUserRole" parameterType="com.innerest.common.user.UserVO">
+UPDATE user
+SET role = #{role}
+WHERE num = #{num}
+</update>
+
+<update id="updateUserPassword" parameterType="com.innerest.common.user.UserVO">
+UPDATE user
+SET pw = #{pw}
+WHERE num = #{num}
+</update>
+
+<update id="deleteUser" parameterType="int">
+UPDATE user
+SET del_flag = 'Y'
+WHERE num = #{num}
+</update>
+
+<select id="selectUserList" resultType="com.innerest.common.user.UserVO">
+SELECT *
+FROM user
+WHERE del_flag = 'N'
+</select>
+
+
+
+
+<!-- ***** Corporation ***** -->
+
+<insert id="insertCorporation" parameterType="com.innerest.common.user.CorporationVO" >
+INSERT INTO corporation (user_num, store_name, rep_name, biz_number, cor_number, business, sector, csbr_flag, qna_phone, manager_name, manager_phone, out_zip, out_addr, out_addr_detail, in_zip, in_addr, in_addr_detail)
+VALUES (#{user_num}, #{store_name}, #{rep_name}, #{biz_number}, #{cor_number}, #{business}, #{sector}, #{csbr_flag}, #{qna_phone}, #{manager_name}, #{manager_phone}, #{out_zip},#{out_addr},#{out_addr_detail}, #{in_zip},#{in_addr},#{in_addr_detail})
+</insert>
+
+<select id="selectCorporation" parameterType="int" resultType="com.innerest.common.user.CorporationVO">
+SELECT *
+FROM corporation
+WHERE user_num = #{user_num}
+</select>
+
+<update id="updateCorporation" parameterType="map">
+UPDATE corporation
+SET 
+<foreach item="item" index="index" collection="_parameter.entrySet()" separator=",">
+${index} = #{item}
+</foreach>
+WHERE user_num = #{user_num}
+</update>
+
+<select id="selectUserSearchCount" resultType="int">
+SELECT count(num)
+FROM user
+where role not in ('A')
+		<where>
+		<if test='searchType == "i"'>
+      			and (id LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'n'.toString()">
+      			and (name LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'in'.toString()">
+      			and (id LIKE CONCAT('%',#{searchWord},'%') OR (name LIKE CONCAT('%',#{searchWord},'%')))
+		</if>
+		</where>
+</select>
+
+<select id="selectUserSearchList" resultType="com.innerest.common.user.UserVO">
+SELECT *
+FROM user
+where role not in ('A')
+		<where>
+		<if test='searchType == "i"'>
+      			and (id LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'n'.toString()">
+      			and (name LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'in'.toString()">
+      			and (id LIKE CONCAT('%',#{searchWord},'%') OR (name LIKE CONCAT('%',#{searchWord},'%')))
+		</if>
+		</where>
+		<![CDATA[
+		ORDER BY regdate desc
+		LIMIT #{startRowNumForDB}, #{pageSize}
+		]]>
+</select>
+
+<select id="selectUserSearchCount2" resultType="int">
+SELECT count(num)
+FROM user
+where role = 'U'
+		<where>
+		<if test='searchType == "i"'>
+      			and (id LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'n'.toString()">
+      			and (name LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'in'.toString()">
+      			and (id LIKE CONCAT('%',#{searchWord},'%') OR (name LIKE CONCAT('%',#{searchWord},'%')))
+		</if>
+		</where>
+</select>
+
+<select id="selectUserSearchList2" resultType="com.innerest.common.user.UserVO">
+SELECT *
+FROM user
+WHERE role = 'U'
+		<where>
+		<if test='searchType == "i"'>
+      			and (id LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'n'.toString()">
+      			and (name LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'in'.toString()">
+      			and (id LIKE CONCAT('%',#{searchWord},'%') OR (name LIKE CONCAT('%',#{searchWord},'%')))
+		</if>
+		</where>
+		<![CDATA[
+		ORDER BY regdate desc
+		LIMIT #{startRowNumForDB}, #{pageSize}
+		]]>
+</select>
+</mapper>

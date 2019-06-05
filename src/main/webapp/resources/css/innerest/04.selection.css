@@ -1,0 +1,128 @@
+ .selection-main-content{
+    position: relative;
+    width: 800px;
+    height: 660px;
+    border: 1px solid #cecece;
+    margin-top: 30px;
+}   
+
+
+
+.wrap-selection-box {position: absolute; margin: 0 auto; width: 1000px;}
+
+.selection-description-box { width: 100%; height: 100px; background-color: #a7d9d5; margin-top: 30px; box-sizing: border-box; margin-bottom: 70px;}
+.selection-description-box p { font-weight: 600; font-size: 19px; line-height: 29px; padding: 20px;  text-align: left; width: 600px; margin: 0 auto; }
+
+.selection-box { width: 90%; margin: 0 auto; }
+
+.selection-list-wrap {}
+.selection-list-wrap li { margin-bottom: 5px;}
+.selection-list > div { float: left;}
+
+.selection-list .object-list { background-color: #eeefef; width: 20%; height: 70px; }
+.selection-list .object-list p { font-size: 18px; text-align: center; line-height: 70px;}
+.selection-list .select-list { height: 70px; width: 80%; background-color: #f6f7f7;}
+.transport {
+    width: 44%;
+    float: left;
+    padding-left: 30px;
+    padding-top: 15px;
+}
+button.trans-btn {
+    margin-right: 20px;
+}
+button#trans1, button#trans2{
+    width: 43%;
+    background-color: #a8d8d4;
+}
+
+.trans-input{
+   height: 36px;
+    width: 30%;
+    margin-left: 30px;
+    margin-top: 15px;
+    font-size: 17px;
+    text-indent: 5px;
+}
+
+/*country btn*/
+
+.country button {
+    width: 39%;
+    height: 10%;
+    margin: 0;
+    border-radius: 56%;
+    margin-right: 10px;
+    background-color: #a8d8d4;
+}
+
+.country img {
+    width: 100%;
+    padding: 2px;
+}
+.country{
+    width: 30%;
+    padding: 5px 0 0 30px;;
+    float: left;
+}
+.country-select {
+    width: 50%!important;
+    margin-left: 0px!important;
+    padding-left: 30px;
+    float: left;
+}
+.select-list select { height: 40px; width: 80%; margin-left: 30px; margin-top: 15px; font-size: 16px;}
+
+.input-product {height: 36px; width: 60%; margin-left: 30px; margin-top: 15px; font-size: 17px; text-indent: 5px;}
+
+/*공항 선택시 수출도시 옵션 */
+.export-airport { display: none;}
+
+/*체크리스트 부분 길이설정 */
+.selection-list .select-list-checklist { height: auto; padding-bottom: 30px;}
+.selection-list .object-list-checklist { height: 250px;}
+
+.btn-check-document { width: 360px; height: 50px; color: #fff; font-size: 16px; border: 0; background-color: #279d93; font-weight: 600; cursor: pointer;}
+.align-width-btn { width: 360px; margin: 0 auto; margin-top: 50px; margin-bottom: 70px;}
+
+/*수출서류 확인 모달창 */
+.modal-document-list { width: 100%; background-color: #fff; box-sizing: border-box; padding: 25px 0; position: fixed; z-index: 10; top: 5%; bottom: 5%;  height: 90%; border: 1px solid #cecece; display: none;}
+#modalDocument {
+    position: absolute;
+}
+.document-list-wrap {margin: 36px auto; }
+.document-list-wrap li { margin-bottom: 5px;}
+.document-list > div { float: left;}
+.article-list { width: 30%; height: 60px; background-color: #a7d9d5;}
+.article-list p { font-size: 16px; text-align: center;  line-height: 60px; font-size: 17px; font-weight: 500;}
+.article-result-list { width: 70%; height: 60px; background-color: #dcf0ee;}
+.article-result-list p { line-height: 60px; text-indent: 20px; font-size: 17px;}
+.article-result-list-length {height: auto; padding-bottom: 20px;}
+
+
+/* 모달 클로즈버튼 임시 */
+.close-modal { width: 30px; height: 30px; border-radius: 50%; background-color: #a7d9d5; color: #fff; font-size: 18px;text-align: center; font-weight: 600; cursor: pointer; position: absolute; right: 30px;}
+
+
+
+/*mobile size*/
+@media screen and (max-width: 767px){
+    .country{
+    width: 62%;
+}
+.country-select {
+    width: 32%!important;
+
+}
+.transport {
+    width: 63%;
+}
+button#trans1.btn, button#trans2.btn {
+    padding: 10px 5px!important;
+    font-size: 12px !important;
+}
+button.trans-btn {
+    margin-right: 0px!important;
+}
+
+}

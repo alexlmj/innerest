@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="token">
+
+<insert id="insertToken">
+INSERT INTO emailtoken 
+VALUES(#{emailtoken}, #{user_num}, DATE_ADD(now(), INTERVAL 10 MINUTE))
+</insert>
+
+<select id="selectToken" resultType="com.innerest.home.TokenVO">
+SELECT *
+FROM emailtoken
+WHERE emailtoken = #{token}
+</select>
+
+<delete id="deleteToken">
+DELETE FROM emailtoken
+WHERE emailtoken = #{token}
+</delete>
+
+<delete id="deleteExpiredToken">
+<![CDATA[ 
+DELETE FROM emailtoken
+WHERE expiredate < now()
+]]>
+</delete>
+
+</mapper>

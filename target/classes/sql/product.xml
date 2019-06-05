@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="product">
+
+<insert id="insertProduct" parameterType="com.innerest.shop.ProductVO">
+INSERT INTO product (user_num, category, name, des, price, file_num1, file_num2, tag)
+VALUES (#{user_num}, #{category}, #{name}, #{des}, #{price}, #{file_num1}, #{file_num2}, #{tag})
+<selectKey resultType="int" keyProperty="num" order="AFTER">
+        SELECT LAST_INSERT_ID()
+</selectKey>
+</insert>
+
+<select id="selectProduct" parameterType="int" resultType="com.innerest.shop.ProductVO">
+SELECT *
+FROM product
+WHERE num = #{num}
+</select>
+
+<select id="selectProductNameByPdNum" parameterType="int" resultType="String">
+SELECT p.name
+FROM product p join product_detail pd on p.num = pd.product_num
+WHERE pd_num = #{num}
+</select>
+
+<select id="selectCountForRegProduct" parameterType="map" resultType="int">
+SELECT count(num)
+FROM product
+<where>
+<if test='user_num != null and user_num!="" '>user_num = #{user_num}</if>
+<if test="search.searchType == 'name'.toString()">
+and name like CONCAT('%',#{search.searchWord},'%')
+</if>
+</where>
+</select>
+
+<select id="selectRegProductList" parameterType="map" resultType="com.innerest.shop.ProductVO">
+SELECT *
+FROM product
+<where>
+<if test='user_num != null and user_num!="" '>user_num = #{user_num}</if>
+<if test="search.searchType == 'name'.toString()">
+and name like CONCAT('%',#{search.searchWord},'%')
+</if>
+</where>
+ORDER BY num desc
+LIMIT #{search.startRowNumForDB}, #{search.pageSize}
+</select>
+
+<select id="selectShopList" parameterType="map" resultType="com.innerest.shop.ProductVO">
+SELECT *
+FROM product
+<where>
+<if test='(category != null) and (category != "")'>category = #{category}</if>
+</where>
+<if test="sortType == 'new'.toString()">ORDER BY num desc</if>
+<if test="sortType == 'high'.toString()">ORDER BY price desc</if>
+<if test="sortType == 'low'.toString()">ORDER BY price asc</if>
+
+LIMIT #{page.startRowNumForDB}, #{page.pageSize}
+</select>
+
+<select id="selectCountForShop" parameterType="map" resultType="int">
+SELECT count(num)
+FROM product
+<where>
+<if test='(category != null) and (category != "")'>category = #{category}</if>
+</where>
+<if test="sortType == 'new'.toString()">ORDER BY num desc</if>
+<if test="sortType == 'high'.toString()">ORDER BY price desc</if>
+<if test="sortType == 'low'.toString()">ORDER BY price asc</if>
+</select>
+
+<!-- 카테고리별 카운트 -->
+<select id="selectCategoryCountListForShop" resultType="com.innerest.shop.CategoryCountVO">
+SELECT category name, count(*) count
+FROM product
+GROUP BY category;
+</select>
+
+<!-- PRODUCT DETAIL -->
+<insert id="insertProductDetail" parameterType="com.innerest.shop.ProductDetailVO">
+INSERT INTO product_detail (product_num, pd_name, pd_price, pd_inven)
+VALUES (#{product_num}, #{pd_name}, #{pd_price}, #{pd_inven})
+</insert>
+
+<select id="selectRegProductDetailList" parameterType="int" resultType="com.innerest.shop.ProductDetailVO">
+SELECT *
+FROM product_detail
+WHERE product_num = #{num}
+</select>
+<select id="selectProductDetail" parameterType="int" resultType="com.innerest.shop.ProductDetailVO">
+SELECT *
+FROM product_detail
+WHERE pd_num = #{pd_num}
+</select>
+
+</mapper>

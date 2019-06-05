@@ -1,0 +1,131 @@
+
+
+/* Q&A 게시판 테이블 2019.05.19 MJ추가  */ 
+table.type10 {
+    border-collapse: collapse;
+    text-align: center;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin: 20px 10px;
+}
+table.type10 thead th {
+    width: 150px;
+    padding: 7px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+    background: #15a7a5;
+    margin: 20px 10px;
+}
+
+table.type10 thead td {
+    width: 350px;
+    padding: 7px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+    background: #15a7a5;
+    margin: 20px 10px;
+}
+
+ 
+table.type10 tbody th {
+    width: 150px;
+    padding: 7px;
+}
+
+table.type10 tbody td {
+    width: 350px;
+    padding: 7px;
+}
+ 
+table.type10 td {
+    width: 350px;
+    padding: 7px;
+    vertical-align: top;
+}
+
+table.type10 title{
+  width: 400px;
+}
+
+table.type10 num{
+  width: 50px;
+}
+
+table.type10 title{
+  width: 400px;
+}
+
+table.type10 num{
+  width: 50px;
+}
+
+ 	
+
+table.type10 .even {
+    background: #fdf3f5;
+}
+
+/* 2019.05.21 MJ추가 게시판/ 게시글 관련 */
+
+article{ }
+
+.article-title{ border-bottom: 2px solid   #4B4949; !important; } #4CAF50
+
+article h4{ margin-top: 5px; 	vertical-align: middle;  color: #2F2E2E; }
+
+.article-writer{  float: left; font-weight: 400; color: #4B4949; }
+
+.article-date{ 	float: right;	font-weight: 400;	color: #4B4949;	 }
+
+
+.article-contents{	display: block;	border: 2px solid #F2EFEF;	margin-top: 60px;	height: 400px;	width: 100%;}
+
+
+/* Full-width input fields */
+input[type=text], input[type=password] {  width: 100%;   padding: 10px;   margin: 5px 0 10px 0;   display: inline-block;   border: none;background: #f1f1f1; }
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+.board-margin{
+	margin-top: 10px;
+}
+
+.board-center{
+  text-align: center;
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+	 opacity: 0.9;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+

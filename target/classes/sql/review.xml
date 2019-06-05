@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="review">
+	<insert id="insertReview">
+	INSERT INTO review (product_num, user_num, id, content, regdate)
+	VALUES (#{product_num}, #{user_num}, #{id}, #{content}, now())
+	</insert>
+	
+	<select id="selectReviewCount" resultType="int">
+	SELECT COUNT(num)
+	FROM review
+	WHERE product_num = #{product_num}
+	</select>
+	
+	<select id="selectReviewList" parameterType="map" resultType="com.innerest.shop.ReviewVO">
+	SELECT *
+	FROM review
+	WHERE product_num = #{product_num}
+	ORDER BY num desc
+	LIMIT #{page.startRowNumForDB}, #{page.pageSize}
+	</select>
+</mapper>

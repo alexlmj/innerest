@@ -1,0 +1,77 @@
+#wrapperMypage {
+     background-color: #efefef; height: 100%; overflow: auto;
+}
+.head-mypage-form { width: 100%; margin-top: 30px; background-color: #70beb8; padding: 10px;}
+
+.width-align { width: 1100px; margin: 0 auto; }
+.head-width-align { width: 1100px; margin: 0 auto;}
+
+.head-mypage-desc { padding: 20px 0; font-size: 17px; background-color: #fff;}
+.wrap-mypage-menu { background-color: #efefef; height: 100%;}
+.content-mypage-menu { padding-top: 80px;}
+
+.wrap-btn-tab { width: 300px; background-color: #fff; margin-right: 40px; float: left; height: 500px;}
+
+.tab-wrap { width:760px; position: relative; background-color:#fff; float: left; height: 650px; margin-bottom: 130px; }
+
+.tab-wrap ul { position: absolute; background-color: #fff; width: 760px; display: none;}
+
+.tab-wrap ul:first-child {display: block;}
+
+.wrap-btn-tab  h2 {  padding: 15px 0; border-bottom: 2px solid #9fd9d3; margin: 0 20px; }
+
+.btn-tab-menu { margin-top: 10px;}
+.btn-tab-menu li a { display: block; margin: 0 25px; font-size: 18px; color: #888; height: 50px; line-height: 50px;}
+
+.btn-tab-menu li a.on-tab { color:#007674 !important; }
+
+/*  비밀번호 변경 페이지 */
+.top-mypage-title { padding: 20px; font-size: 20px; font-weight: bold; border-bottom: 2px solid  #70beb8;}
+
+.content-change-password { width: 400px; margin: 0 auto; margin-top: 40px;}
+.content-change-password p { font-size: 17px; color: #777;}
+.content-change-password input { width: 80%; height: 35px; margin-bottom: 10px; margin-top: 10px; text-indent: 10px; background-color: #e7eef9; border: 0; font-size: 17px;}
+
+input:focus { color: #000; background-color: #fff; }
+
+.done-btn01 { width: 300px; background-color: #1a9f9d; border: 0; height: 40px; color: #fff; font-size: 15px; margin-top: 60px; cursor: pointer;}
+
+
+
+/*회원정보 수정 페이지 */
+.content-edit-information { width: 400px;  margin: 0 auto; margin-top: 40px;}
+
+.content-edit-information span { font-size: 18px; color: #777;display: inline-block; width: 90px; height: 40px; line-height: 40px; margin-bottom: 10px;}
+.content-edit-information input { width: 300px; height: 40px; background-color:#e7eef9; border: 0; margin-bottom: 10px; }
+input:focus { color: #000; background-color: #fff; }
+
+.align-btn02 { width: 300px; margin: 0 auto;}
+.done-btn02 { width: 300px; height: 40px; background-color: #1a9f9d; font-size: 15px; color: #fff; cursor: pointer; margin-top: 50px; border: 0; }
+
+
+
+/*기업회원 전환 페이지*/
+
+.content-company-member { width: 90%; margin: 0 auto; margin-top: 40px;}
+.content-company-member span { display: inline-block;  width: 180px; }
+.content-company-member p { margin-bottom: 15px; height: 40px;}
+.content-company-member input { width: 40%;   background-color: #e7eef9; height: 35px; border: 0; box-sizing: border-box;}
+
+.select-opt {height: 0;}
+
+.btn-align03 { margin: 0 auto; width: 300px; }
+
+.done-btn03 { width: 300px; height: 40px; background-color: #1a9f9d; font-size: 15px; color: #fff; cursor: pointer; margin-top: 50px; border: 0;  }
+
+
+
+.footer-login {
+    text-align: center; padding-top: 90px;
+}
+.footer-login p { font-size: 14px; margin-bottom: 90px;}
+.footer-login span { color: #1a9f9d;}
+
+
+
+
+

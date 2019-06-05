@@ -1,0 +1,84 @@
+
+/*main visual */
+
+#mainVisual { width: 100%; height: 761px; background-color: antiquewhite;position: relative; border-bottom: 8px solid #15a7a5;}
+
+
+.wrap-panel-main-vsu { width: 100%; height: 100%; }
+
+.wrap-panel-main-vsu li { width: 100%; height: 100%; position: absolute; left:0; top: 0;}
+.wrap-panel-main-vsu li:nth-child(1) { background-image: url(../img/main_visual/main_visual_2.jpg); background-size: cover; background-position: center center; z-index: 1; background-repeat: no-repeat;}
+
+.wrap-panel-main-vsu li:nth-child(2) { background-image: url(../img/main_visual/main1_edit.png); background-size: cover; background-position: center center; background-repeat: no-repeat;    }
+
+.btn-slider {position: absolute; bottom: 20px;  z-index: 2; left: 50%; margin-left: -30px;}
+
+/* 버튼위치 다시계산 / 버튼 임시 */
+
+.btn-slider li { float: left;  text-indent: -999999px; width: 10px; height: 10px; border: 2px solid #f0f0f0; border-radius: 50%; margin: 0 5px;}
+
+/*content*/
+#main { width: 100%;}
+.main-content-01 { padding-top: 80px;}
+.main-content-01 > div { float: left; padding-bottom: 70px; text-align: center;}
+.main-content-01-ment { width: 60%;}
+.main-content-01-img { width: 40%;}
+.main-content-01-img img { width: 500px;}
+.bg-color-main-c-top { background-color:#f2f3f3; }
+
+.main-content-01-ment h2 { font-weight: 400; font-size: 35px;}
+.main-content-01-ment p { font-size: 15px; color: #999; font-weight: 300; margin-top: 20px; line-height: 26px;}
+.btn-what-wedo { display: block; margin-top: 40px;}
+.btn-what-wedo img { width:225px; }
+
+
+.main-cotent-02 > div { float: left; text-align: center; padding-top: 60px; padding-bottom: 80px;}
+.iframe-main-youtube { width: 60%;}
+.iframe-main-youtube iframe { width: 560px; height: 310px; }
+.main-content-02-ment { width: 40%;}
+.main-content-02-ment h2 {
+    font-weight: 400; font-size: 35px;
+}
+.main-content-02-ment p {font-size: 15px; color: #999; font-weight: 300; margin-top: 20px; line-height: 26px; }
+.btn-wework {display: block; margin-top: 40px; }
+.btn-wework img { width:225px; }
+
+
+
+/*----------------------------------jihyang modified--------------------------------------------------------------------------*/
+/*content1*/
+.sec1-fullcontainer{
+	width: 100%;
+	background-color:#f2f3f3;
+}
+.main-content{
+	padding: 50px 0 50px 0;
+	text-align: center;
+}
+.main-content h2{
+	font-weight: 400; font-size: 35px;
+}
+.main-content p{
+	font-weight: 400; font-size: 35px;
+	font-size: 15px; color: #999; font-weight: 300; margin-top: 20px; line-height: 26px;
+}
+.main-content1-img img{
+	width: 90%;
+}
+
+/*content2*/
+.sec2-fullcontainer{
+	width: 100%;
+}
+.sec2-fullcontainer iframe{
+	width: 100%;
+}
+
+/*mobile size*/
+@media screen and (max-width: 767px){
+.main-content-padding{
+	padding-top: 50px;
+}
+
+
+}

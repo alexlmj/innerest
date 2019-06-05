@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="board">
+	<insert id="insertBoard">
+		INSERT INTO board(unum, title,content,writer,regdate,viewcnt,open_flag,border,type)
+		VALUES (#{unum}, #{title},#{content},#{writer},now(),0,#{open_flag},#{border},#{type})
+	</insert>
+
+	<select id="selectBoardList" resultType="com.innerest.board.BoardVO">
+		<![CDATA[
+		SELECT *
+		FROM board
+		]]>
+		<where>
+		<if test='searchType == "t"'>
+      			(title LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'c'.toString()">
+      			(content LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'w'.toString()">
+      			(writer LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test='searchType == "tc"'>
+      			(title LIKE CONCAT('%',#{searchWord},'%') OR content LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'tw'.toString()">
+      			(title LIKE CONCAT('%',#{searchWord},'%') OR writer LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'cw'.toString()">
+      			(content LIKE CONCAT('%',#{searchWord},'%') OR writer LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'tcw'.toString()">
+     			(title LIKE CONCAT('%',#{searchWord},'%') OR 
+      			content LIKE CONCAT('%',#{searchWord},'%') OR 
+       			writer LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		</where>
+		<![CDATA[
+		ORDER BY border desc
+		LIMIT #{startRowNumForDB}, #{pageSize}
+		]]>
+	</select>
+	
+	<select id="selectCount" resultType="int">
+	SELECT count(bnum)
+	FROM board
+	<where>
+		<if test='searchType == "t"'>
+      			(title LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'c'.toString()">
+      			(content LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'w'.toString()">
+      			(writer LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test='searchType == "tc"'>
+      			(title LIKE CONCAT('%',#{searchWord},'%') OR content LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'tw'.toString()">
+      			(title LIKE CONCAT('%',#{searchWord},'%') OR writer LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'cw'.toString()">
+      			(content LIKE CONCAT('%',#{searchWord},'%') OR writer LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'tcw'.toString()">
+     			(title LIKE CONCAT('%',#{searchWord},'%') OR 
+      			content LIKE CONCAT('%',#{searchWord},'%') OR 
+       			writer LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+	</where>
+	</select>
+	
+	<!-- 조회 -->
+	<select id="selectBoard" resultType="com.innerest.board.BoardVO">
+	SELECT *
+	FROM board
+	WHERE bnum = #{bnum}
+	</select>
+	
+	<select id="selectNewestBoardOrder" resultType="Integer">
+	SELECT max(border)
+	FROM board
+	</select>
+	
+	<update id="updateBoard">
+	UPDATE FROM board
+	SET title = #{title} , content = #{content}, open_flag = #{open_flalg}
+	WHERE bnum = #{bnum}
+	</update>
+	
+	<update id="deleteBoard">
+	DELETE board
+	WHERE bnum = #{bnum}
+	</update>
+</mapper>

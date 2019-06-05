@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="file">
+<insert id="insertFile" parameterType="com.innerest.file.FileVO">
+INSERT INTO file (saved_name, origin_name, extension, size)
+VALUES (#{saved_name}, #{origin_name}, #{extension}, #{size})
+	<selectKey resultType="int" keyProperty="num" order="AFTER">
+        SELECT LAST_INSERT_ID()
+   </selectKey>
+</insert>
+
+<select id="selectFile" resultType="com.innerest.file.FileVO">
+SELECT *
+FROM file
+WHERE num = #{num}
+</select>
+</mapper>

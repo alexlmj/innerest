@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="crud">
+
+<insert id="insertMap">
+INSERT INTO user
+	<foreach item="key" index="index" collection="_parameter.entrySet()" open="(" separator="," close=")">
+		${index}
+	</foreach>
+	VALUES
+	<foreach item="value" index="index" collection="_parameter.entrySet()" open="(" separator="," close=")">
+		#{value}
+	</foreach>
+</insert>
+
+<update id="updateMap" parameterType="map">
+UPDATE user
+SET 
+<foreach item="item" index="index" collection="_parameter.entrySet()" separator=",">
+${index} = #{item}
+</foreach>
+WHERE num = #{num}
+</update>
+
+</mapper>

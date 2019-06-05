@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="checkout">
+<insert id="insertCheckout">
+INSERT INTO checkout (user_num, price, state, regdate, name, zip, addr, addr_detail, email, phone, memo, review_flag)
+VALUES (#{user_num}, #{price}, 'PAY_ING', now(), #{name}, #{zip},#{addr}, #{addr_detail}, #{email}, #{phone}, #{memo}, 'N')
+<selectKey resultType="int" keyProperty="num" order="AFTER">
+        SELECT LAST_INSERT_ID()
+</selectKey>
+</insert>
+
+<insert id="insertCheckoutProduct">
+INSERT INTO checkout_product 
+VALUES (#{checkout_num}, #{pd_num}, #{quantity})
+</insert>
+
+<select id="selectCheckoutList" resultType="com.innerest.shop.CheckoutVO">
+SELECT *
+FROM checkout
+WHERE num = #{num}
+</select>
+
+<select id="selectCheckoutProductList" resultType="com.innerest.shop.CheckoutProductVO">
+SELECT *
+FROM checkout_product
+WHERE num = #{checkout_num}
+</select>
+
+<select id="selectSearchOrderList" parameterType="map" resultType="com.innerest.shop.OrderVO">
+SELECT p.num product_num, c.num checkout_num, c.state, c.regdate, c.review_flag, cp.quantity, p.name, p.file_num1 file, pd.pd_name, pd.pd_price, cor.store_name
+FROM checkout c, checkout_product cp, product_detail pd, product p, corporation cor
+WHERE c.user_num = #{num} and c.num = cp.checkout_num and cp.pd_num = pd.pd_num and pd.product_num = p.num and p.user_num = cor.user_num
+<if test="search.searchType == 'name'.toString()">
+and p.name LIKE CONCAT('%',#{search.searchWord},'%')
+</if>
+
+<![CDATA[
+ORDER BY c.regdate desc
+LIMIT #{search.startRowNumForDB}, #{search.pageSize}
+]]>
+</select>
+
+<select id="selectSearchOrderCount" parameterType="map" resultType="int">
+SELECT count(c.num)
+FROM checkout c, checkout_product cp, product_detail pd, product p, corporation cor
+WHERE c.user_num = #{num} and c.num = cp.checkout_num and cp.pd_num = pd.pd_num and pd.product_num = p.num and p.user_num = cor.user_num
+<if test="search.searchType == 'name'.toString()">
+and p.name LIKE CONCAT('%',#{search.searchWord},'%')
+</if>
+</select>
+
+<select id="selectSearchBizOrderList" parameterType="map" resultType="com.innerest.shop.BizOrderVO">
+SELECT c.num checkout_num, c.regdate, p.file_num1 file, p.name, pd.pd_name, pd.pd_price, cp.quantity, u.id, c.state, u.num user_num
+FROM product p join product_detail pd on p.num = pd.product_num join checkout_product cp on pd.pd_num = cp.pd_num join checkout c on cp.checkout_num = c.num join user u on c.user_num = u.num
+WHERE p.user_num = #{cor_num}
+<if test="search.searchType == 'name'.toString()">
+and p.name LIKE CONCAT('%',#{search.searchWord},'%')
+</if>
+<![CDATA[
+ORDER BY c.regdate desc
+LIMIT #{search.startRowNumForDB}, #{search.pageSize}
+]]>
+</select>
+
+<select id="selectSearchBizOrderCount" parameterType="map" resultType="int">
+SELECT count(pd.pd_num)
+FROM product p join product_detail pd on p.num = pd.product_num join checkout_product cp on pd.pd_num = cp.pd_num join checkout c on cp.checkout_num = c.num join user u on c.user_num = u.num
+WHERE p.user_num = #{cor_num}
+<if test="search.searchType == 'name'.toString()">
+and p.name LIKE CONCAT('%',#{search.searchWord},'%')
+</if>
+</select>
+
+<update id="updateCheckoutState" parameterType="map">
+UPDATE checkout
+SET state = #{state}
+WHERE num = #{num}
+</update>
+
+<!-- ADMIN ACCOUNT -->
+<select id="selectCheckoutSearchList" resultType="com.innerest.admin.AdminOrderVO">
+<![CDATA[
+		SELECT c.num checkout_num, c.regdate, p.file_num1 file_num, p.name product_name, pd.pd_name, pd.pd_price, cp.quantity, c.name, cor.store_name, c.state
+	    FROM checkout c join checkout_product cp on c.num = cp.checkout_num join product_detail pd on cp.pd_num = pd.pd_num join product p on pd.product_num = p.num join corporation cor on p.user_num = cor.user_num
+		]]>
+		<where>
+		<if test='searchType == "n"'>
+      			(p.name LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'p'.toString()">
+      			(c.name LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'c'.toString()">
+      			(cor.store_name LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test='searchType == "np"'>
+      			(p.name LIKE CONCAT('%',#{searchWord},'%') OR c.name LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'nc'.toString()">
+      			(p.name LIKE CONCAT('%',#{searchWord},'%') OR cor.store_name LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'pc'.toString()">
+      			(c.name LIKE CONCAT('%',#{searchWord},'%') OR cor.store_name LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'npc'.toString()">
+     			(p.name LIKE CONCAT('%',#{searchWord},'%') OR 
+      			c.name LIKE CONCAT('%',#{searchWord},'%') OR 
+       			cor.store_name LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		</where>
+		<![CDATA[
+		ORDER BY c.regdate desc
+		LIMIT #{startRowNumForDB}, #{pageSize}
+		]]>
+</select>
+
+<select id="selectCheckoutSearchCount" resultType="int">
+<![CDATA[
+		SELECT count(c.num)
+	    FROM checkout c join checkout_product cp on c.num=cp.checkout_num join product_detail pd on cp.pd_num = pd.pd_num join product p on pd.product_num = p.num join corporation cor on p.user_num = cor.user_num
+		]]>
+		<where>
+		<if test='searchType == "n"'>
+      			(p.name LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'p'.toString()">
+      			(c.name LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'c'.toString()">
+      			(cor.store_name LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test='searchType == "np"'>
+      			(p.name LIKE CONCAT('%',#{searchWord},'%') OR c.name LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'nc'.toString()">
+      			(p.name LIKE CONCAT('%',#{searchWord},'%') OR cor.store_name LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'pc'.toString()">
+      			(c.name LIKE CONCAT('%',#{searchWord},'%') OR cor.store_name LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		<if test="searchType == 'npc'.toString()">
+     			(p.name LIKE CONCAT('%',#{searchWord},'%') OR 
+      			c.name LIKE CONCAT('%',#{searchWord},'%') OR 
+       			cor.store_name LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		</where>
+</select>
+
+<update id="updateReviewFlagY">
+UPDATE checkout
+SET review_flag = 'Y'
+WHERE num = #{checkout_num}
+</update>
+</mapper>

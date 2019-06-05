@@ -1,0 +1,12 @@
+label {
+    border: 1px solid #ccc;
+    padding: 15px 10px;
+    margin: 0 0 10px;
+    display: block;
+    border-radius: 9px;
+}
+
+label:hover {
+ background:#eee;
+ cursor:pointer;
+}
